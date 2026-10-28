@@ -1,0 +1,31 @@
+# Same app, built against a local firebase-ios-sdk checkout (../firebase-ios-sdk),
+# with Firestore compiled from source. Generate with:
+#   xcodegen generate --spec project-local-sdk.yml
+# and build with FIREBASE_SOURCE_FIRESTORE=1 in the environment, which makes the
+# SDK's Package.swift use the Firestore sources instead of the prebuilt binary.
+name: FirestoreIndexReproLocalSDK
+options:
+  bundleIdPrefix: dev.repro
+  deploymentTarget:
+    iOS: "16.0"
+packages:
+  Firebase:
+    path: ../firebase-ios-sdk
+targets:
+  FirestoreIndexReproLocalSDK:
+    type: application
+    platform: iOS
+    sources: [Repro]
+    dependencies:
+      - package: Firebase
+        product: FirebaseFirestore
+    info:
+      path: Repro/Info.plist
+      properties:
+        CFBundleDisplayName: Index Repro
+        UILaunchScreen: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.repro.firestoreindex.localsdk
+        SWIFT_VERSION: "5.0"
+        CODE_SIGNING_ALLOWED: "NO"

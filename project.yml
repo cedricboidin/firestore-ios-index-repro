@@ -1,0 +1,27 @@
+name: FirestoreIndexRepro
+options:
+  bundleIdPrefix: dev.repro
+  deploymentTarget:
+    iOS: "16.0"
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    exactVersion: 12.19.0
+targets:
+  FirestoreIndexRepro:
+    type: application
+    platform: iOS
+    sources: [Repro]
+    dependencies:
+      - package: Firebase
+        product: FirebaseFirestore
+    info:
+      path: Repro/Info.plist
+      properties:
+        CFBundleDisplayName: Index Repro
+        UILaunchScreen: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.repro.firestoreindex
+        SWIFT_VERSION: "5.0"
+        CODE_SIGNING_ALLOWED: "NO"
